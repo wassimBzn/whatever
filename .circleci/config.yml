@@ -18,7 +18,7 @@ jobs:
       #        else run docker stack deploy
         command: |
           ssh $SSH_USER@$SSH_HOST "docker login -u $DOCKERUSER -p $DOCKERPASS
-                                   docker service update --force --with-registry-auth --image wassimbzn/whatever:master:$CIRCLE_BRANCH whatever_stack_web;"
+                                   docker service update --force --with-registry-auth --image wassimbzn/whatever:$CIRCLE_BRANCH whatever_stack_web;"
  
 workflows:
   version: 2
