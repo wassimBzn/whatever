@@ -17,7 +17,7 @@ jobs:
     #        TODO: add script that checks if stack is up
     #        else run docker stack deploy
       command: |
-        ssh $SSH_USER@$SSH_HOST "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        ssh $SSH_USER@$SSH_HOST "docker login -u $DOCKERUSER -p $DOCKERPASS;
                                  docker service update --force --with-registry-auth --image wassimbzn/whatever:master:$CIRCLE_BRANCH whatever_stack;"
  
 workflows:
