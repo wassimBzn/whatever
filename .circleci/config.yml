@@ -8,6 +8,30 @@ jobs:
       - run: docker login -u $DOCKERUSER -p $DOCKERPASS
       - run: docker build -t wassimbzn/whatever:$CIRCLE_BRANCH .
       - run: docker push  wassimbzn/whatever:$CIRCLE_BRANCH
+  deploy_prod:
+    machine:
+      enabled: true
+    steps:
+    - run:
+      name: Deploy Branch to cluster
+    #        TODO: add script that checks if stack is up
+    #        else run docker stack deploy
+      command: |
+        ssh $SSH_USER@$SSH_HOST "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+                                 docker service update --force --with-registry-auth --image wassimbzn/whatever:master:$CIRCLE_BRANCH whatever_stack;"
+ 
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy_prod:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+ 
 #  two:
 #    docker:
 #      - image: circleci/ruby:2.4.1
