@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: docker login -u $DOCKERUSER -p $DOCKERPASS
-      - run: docker build -t wassimbzn/whatever:$CIRCLECI_BRANCH
+      - run: docker build -t wassimbzn/whatever:$CIRCLECI_BRANCH .
       - run: docker push  wassimbzn/whatever:$CIRCLECI_BRANCH
 #  two:
 #    docker:
