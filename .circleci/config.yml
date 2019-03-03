@@ -13,12 +13,12 @@ jobs:
       enabled: true
     steps:
     - run:
-      name: Deploy Branch to cluster
-    #        TODO: add script that checks if stack is up
-    #        else run docker stack deploy
-      command: |
-        ssh $SSH_USER@$SSH_HOST "docker login -u $DOCKERUSER -p $DOCKERPASS
-                                 docker service update --force --with-registry-auth --image wassimbzn/whatever:master:$CIRCLE_BRANCH whatever_stack;"
+        name: Deploy Branch to cluster
+      #        TODO: add script that checks if stack is up
+      #        else run docker stack deploy
+        command: |
+          ssh $SSH_USER@$SSH_HOST "docker login -u $DOCKERUSER -p $DOCKERPASS
+                                   docker service update --force --with-registry-auth --image wassimbzn/whatever:master:$CIRCLE_BRANCH whatever_stack;"
  
 workflows:
   version: 2
