@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  one:
+    machine:
+      enabled: true
+    steps:
+      - checkout
+      - run: docker login -u $DOCKERUSER -p $DOCKERPASS
+      - run: docker build -t wassimbzn/whatever:$CIRCLECI_BRANCH
+      - run: docker push  wassimbzn/whatever:$CIRCLECI_BRANCH
+#  two:
+#    docker:
+#      - image: circleci/ruby:2.4.1
+#    steps:
+#      - checkout
+#      - run: echo "A more familiar hi"
+#      - run: sleep 15
+#workflows:
+#  version: 2
+#  one_and_two:
+#    jobs:
+#      - one
+#      - two
